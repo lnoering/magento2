@@ -10,6 +10,7 @@
 
 ## Table of contents
 
+- [Install](#install)
 - [Droplet server](#droplet-server)
 - [Git](#git)
   - [Deploy](#deploy)
@@ -22,6 +23,18 @@
     - New theme 
 - [Debug](#debug)
 - [CI](#ci)
+
+## Install
+
+- Use this command to install the first time.
+```bash
+bin/magento setup:install --base-url="http://localhost/" --db-host="db" --db-name="magento" --db-user="magento" --db-password="magento" --admin-firstname="admin" --admin-lastname="admin" --admin-email="user@example.com" --admin-user="admin" --admin-password="admin123" --language="en_US" --currency="USD" --timezone="America/Sao_Paulo" --use-rewrites="1" --backend-frontname="adminaccess" --opensearch-host="opensearch" --opensearch-port="9200" --opensearch-enable-auth="false" --opensearch-username="" --opensearch-password="" --base-url-secure="https://localhost/" --search-engine="opensearch" --session-save="redis" --session-save-redis-host="redis" --session-save-redis-port="6379" --session-save-redis-password="" --session-save-redis-timeout="2.5" --session-save-redis-persistent-id="" --session-save-redis-db="2" --session-save-redis-compression-threshold="2048" --session-save-redis-compression-lib="gzip" --session-save-redis-log-level="4" --session-save-redis-max-concurrency="6" --session-save-redis-break-after-frontend="5" --session-save-redis-break-after-adminhtml="30" --session-save-redis-first-lifetime="600" --session-save-redis-bot-first-lifetime="60" --session-save-redis-bot-lifetime="7200" --session-save-redis-disable-locking="0" --session-save-redis-min-lifetime="60" --session-save-redis-max-lifetime="2592000" --cache-backend="redis" --cache-backend-redis-server="redis" --cache-backend-redis-db="0" --page-cache="redis" --page-cache-redis-server="redis" --page-cache-redis-db="1"
+```
+
+-- URL SET
+-- ADMIN USER
+-- SEARCH
+-- CACHE (Default caching, Page Cache, Session)
 
 ## Droplet Server
 
