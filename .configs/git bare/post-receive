@@ -40,7 +40,10 @@ do
         $DOCKER_DIR/bin/magento c:f
 
         git tag release_$NOW $TARGET_BRANCH
-        git push origin release_$NOW
+        # githubdeploy = config of host at ./ssh/config // use the file at .configs/.ssh/config
+        git push git@githubdeploy:lnoering/magento2.git release_$NOW 
+        # if need push all tags
+        # git push --tags git@githubdeploy:lnoering/magento2.gt
 
         echo "   /==============================="
         echo "   | DEPLOYMENT COMPLETED"

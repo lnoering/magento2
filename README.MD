@@ -13,7 +13,10 @@
 - [Install](#install)
 - [Droplet server](#droplet-server)
 - [Git](#git)
-  - [Deploy](#deploy)
+  - [Server Deploy Configs](#server-deploy-configs)
+  - [Server Push Tag to Repository](#server-push-tag-to-repository)
+  - [Local Configs to Deploy](#local-Configs-to-deploy)
+  - [Deploy Command](#deploy-command)
   - [Flow to work](#git-flow)
 - [MTFT](#mtft)
 - [Selenium](#selenium)
@@ -115,7 +118,7 @@ git config --global user.name "Deployer"
 git config --global user.email "lnoering@gmail.com"
 ```
 
-### Deploy
+### Server Deploy Configs
 
 - Run this commands at the server
 ```bash
@@ -134,14 +137,39 @@ chmod +x post-receive
 vim post-receive
 ```
 
-- Copy the data of post-receive from .configs/post-receive
+- Copy the data of post-receive from .configs/git bare/post-receive
 
-* Server is done, now we will create the action at your local to push to the server.
+### Server Push Tag to Repository
+
+- Create one ssh-key at server (user web)
+```bash
+  ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+- Add the key to the agent ssh. (not the .pub)
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/<key-created>
+```
+
+- Copy the pub key
+```bash
+cat ~/.ssh/<key-created>.pub
+```
+
+- Add to the github deploy key. (Enable the write)
+-- https://github.com/<repo-user>/<remo-name>/settings/keys
+In my case:
+-- https://github.com/lnoering/magento2/settings/keys
+
+### Local Configs to Deploy
 
 - Creating one remote at your machine to deploy.
 ```bash
 git remote add deploy ssh://web@dropletserver:22/home/app/code/magento.git
 ```
+
+### Deploy Command
 
 - The command to deploy. (we will use the master to deploy)
 ```bash
