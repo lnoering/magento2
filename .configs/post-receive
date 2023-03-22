@@ -1,0 +1,51 @@
+#!/bin/sh
+
+TARGET_BRANCH="master"
+
+REPO_DIR="/home/$USER/app/code/magento.git/"
+WC_DIR="/home/$USER/app/code/checkout/"
+WEB_DIR="/home/$USER/app/docker/src"
+CACHE_DIR="/home/$USER/app/docker/src/var/cache/*"
+DOCKER_DIR="/home/$USER/app/docker"
+
+while read oldrev newrev refname
+do
+    branch=$(git rev-parse --symbolic --abbrev-ref $refname)
+    if [ -n "$branch" ] && [ "$TARGET_BRANCH" == "$branch" ]; then
+
+        echo "1  => Set permissions to deploy ( $WC_DIR )"
+        # chmod -R 775 ${WC_DIR}
+        # enable writable
+        # chmod -R ug+w .
+        find ${WC_DIR}app/code ${WC_DIR}lib ${WC_DIR}var ${WC_DIR}generated ${WC_DIR}vendor ${WC_DIR}pub/static ${WC_DIR}pub/media ${WC_DIR}app/etc \( -type d -or -type f \) -exec chmod ug+w {} + && chmod o+rwx ${WC_DIR}app/etc/env.php
+
+        echo "2  => Clone Branch ( $TARGET_BRANCH )"
+        GIT_WORK_TREE=$WC_DIR git checkout -f $TARGET_BRANCH
+        NOW=$(date +"%Y%m%d-%H%M")
+
+        echo "3 => Change owner and group to $USER"
+        chown -R $USER:$USER $WC_DIR
+        # rsync with web root
+        echo "4 => Copy files to directori( $WEB_DIR )"
+        /usr/bin/rsync --archive --delete --exclude=/app/etc/env.php --exclude=.git --exclude=*.log --exclude=.gitignore --exclude=sitemap.xml --exclude=/pub/ --exclude=/var/ $WC_DIR $WEB_DIR
+        
+        echo "5  => Set permissions to run ( $WC_DIR )"
+        # finish disable writable 
+        find ${WC_DIR}app/code ${WC_DIR}lib ${WC_DIR}pub/static ${WC_DIR}app/etc ${WC_DIR}generated/code ${WC_DIR}generated/metadata ${WC_DIR}var/view_preprocessed \( -type d -or -type f \) -exec chmod g-w {} + && chmod o-rwx ${WC_DIR}app/etc/env.php
+        chmod ug+x ${WC_DIR}bin/magento
+        
+        # clear the caches
+        echo "6 => Clean Cache ( $CACHE_DIR )"
+        rm -rf $CACHE_DIR
+        $DOCKER_DIR/bin/magento c:f
+
+        git tag release_$NOW $TARGET_BRANCH
+
+        echo "   /==============================="
+        echo "   | DEPLOYMENT COMPLETED"
+        echo "   | Target branch: $TARGET_BRANCH"
+        echo "   | Target folder: $WC_DIR"
+        echo "   | Tag name     : release_$NOW"
+        echo "   \=============================="
+    fi
+done 

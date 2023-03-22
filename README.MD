@@ -104,9 +104,49 @@ curl -s https://raw.githubusercontent.com/markshust/docker-magento/master/lib/te
 
 ## Git
 
+- Install
+```bash
+sudo yum install git
+```
+
+- Config
+```bash
+git config --global user.name "Deployer"
+git config --global user.email "lnoering@gmail.com"
+```
+
 ### Deploy
 
-- Process to deploy
+- Run this commands at the server
+```bash
+mkdir /home/web/app/code
+mkdir /home/web/app/code/magento.git
+cd /home/web/app/code/magento.git
+git init --bare
+```
+
+- Set the post-receive hook to git
+```bash
+mkdir /home/web/app/code/checkout
+cd /home/web/app/code/magento.git/hooks
+touch post-receive
+chmod +x post-receive
+vim post-receive
+```
+
+- Copy the data of post-receive from .configs/post-receive
+
+* Server is done, now we will create the action at your local to push to the server.
+
+- Creating one remote at your machine to deploy.
+```bash
+git remote add deploy ssh://web@dropletserver:22/home/app/code/magento.git
+```
+
+- The command to deploy. (we will use the master to deploy)
+```bash
+git push deploy master
+```
 
 ### Git Flow
 
