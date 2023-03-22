@@ -186,7 +186,7 @@ git push deploy master
 
 <div align="center">
   <p>Git Flow</p>
-  <img src="https://github.com/lnoering/magento2/tree/master/.configs/git-flow-model.webp" width="524" height="695" alt="Flow" />
+  <img src="https://raw.githubusercontent.com/lnoering/magento2/master/.configs/git-flow-model.webp" width="524" height="695" alt="Flow" />
 </div>
 
 
