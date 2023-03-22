@@ -40,6 +40,7 @@ do
         $DOCKER_DIR/bin/magento c:f
 
         git tag release_$NOW $TARGET_BRANCH
+        git push origin release_$NOW
 
         echo "   /==============================="
         echo "   | DEPLOYMENT COMPLETED"
