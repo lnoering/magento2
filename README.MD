@@ -39,9 +39,13 @@ bin/magento setup:install --base-url="http://localhost/" --db-host="db" --db-nam
 -- SEARCH
 -- CACHE (Default caching, Page Cache, Session)
 
-## Droplet Server
+## Server
 
-> Using [![DigitalOcean Referral Badge](https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%202.svg)](https://www.digitalocean.com/?refcode=720521a3104b&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge) to run.
+<div align="center">
+  <p>Digital Ocean</p>
+  <a href="https://www.digitalocean.com/?refcode=720521a3104b&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge" ><img src="https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%202.svg" alt="Digital Ocean" /></a>
+</div>
+
 
 #### Creating droplet
 
@@ -158,9 +162,11 @@ cat ~/.ssh/<key-created>.pub
 ```
 
 - Add to the github deploy key. (Enable the write)
--- https://github.com/<repo-user>/<remo-name>/settings/keys
-In my case:
--- https://github.com/lnoering/magento2/settings/keys
+  - https://github.com/\<repo-user\>/\<remo-name\>/settings/keys
+  
+    In my case:
+
+  - https://github.com/lnoering/magento2/settings/keys
 
 ### Local Configs to Deploy
 
@@ -177,6 +183,12 @@ git push deploy master
 ```
 
 ### Git Flow
+
+<div align="center">
+  <p>Git Flow</p>
+  <img src="https://github.com/lnoering/magento2/tree/master/.configs/git-flow-model.webp" width="524" height="695" alt="Flow" />
+</div>
+
 
 - Proccess to work with branchs 
   - [Branching-model](https://nvie.com/posts/a-successful-git-branching-model/)
