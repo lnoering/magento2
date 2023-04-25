@@ -109,6 +109,24 @@ sudo usermod -aG docker web
 curl -s https://raw.githubusercontent.com/markshust/docker-magento/master/lib/template | bash
 ```
 
+#### Docker access by internet
+
+- Limit the access of services including the network.
+```bash
+networks:
+  no-internet:
+    driver: bridge
+    internal: true
+  internet:
+    driver: bridge
+```
+
+  - I leave the network name internet just for the app (nginx).
+  - The network name no-internet I added for all services.
+
+
+- I need test to know how it's work with the other droplets. (DATABASE / OPENSEARCH)
+
 ## Git
 
 - Install
