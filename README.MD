@@ -62,13 +62,24 @@ vi /etc/ssh/sshd_config
 ```bash
 service sshd restart
 ```
-- Now you can access by ssh from your machine.
+- Now access by ssh from your machine.
 
 + Will need create 4 droplets. 
   + PHP/NGINX OR APACHE
   + OPENSEARCH
   + DATABASE
-  + REDIS (Session and code)
+  + REDIS (Session and cache)
+
+#### Server Configs
+
+- Create the web user
+```bash
+useradd web
+```
+- Set the password to this user
+```bash
+passwd web
+```
 
 #### Installing the docker
 
@@ -125,7 +136,11 @@ networks:
   - The network name no-internet I added for all services.
 
 
-- I need test to know how it's work with the other droplets. (DATABASE / OPENSEARCH)
+- Droplets communications.
+  - I used the Firewall from Digital Ocean panel to limit the access. (External Access)
+    Creting sprecific rules to droplets.
+
+
 
 ## Git
 
