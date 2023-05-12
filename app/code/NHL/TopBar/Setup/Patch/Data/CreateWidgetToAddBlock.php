@@ -70,7 +70,7 @@ class CreateWidgetToAddBlock implements DataPatchInterface, PatchRevertableInter
         $widgetData = [
             'instance_type' => 'Magento\Cms\Block\Widget\Block',
             'instance_code' => 'cms_static_block',
-            'theme_id' => 2,
+            'theme_id' => 3,
             'title' => 'To add top bar',
             'store_ids' => [Store::DEFAULT_STORE_ID],
             'widget_parameters' => '{"block_id":"'.$cmsBlock->getId().'"}',
