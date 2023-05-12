@@ -39,6 +39,11 @@ bin/magento setup:install --base-url="http://localhost/" --db-host="db" --db-nam
 -- SEARCH
 -- CACHE (Default caching, Page Cache, Session)
 
+- Disable the two factor auth
+```bash
+bin/magento module:disable {Magento_AdminAdobeImsTwoFactorAuth,Magento_TwoFactorAuth}
+```
+
 ## Server
 
 <div align="center">
