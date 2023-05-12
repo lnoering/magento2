@@ -122,24 +122,16 @@ curl -s https://raw.githubusercontent.com/markshust/docker-magento/master/lib/te
 
 #### Docker access by internet
 
-- Limit the access of services including the network.
-```bash
-networks:
-  no-internet:
-    driver: bridge
-    internal: true
-  internet:
-    driver: bridge
-```
-
-  - I leave the network name internet just for the app (nginx).
-  - The network name no-internet I added for all services.
-
-
 - Droplets communications.
   - I used the Firewall from Digital Ocean panel to limit the access. (External Access)
     Creting sprecific rules to droplets.
 
+
+#### Docker with ssl
+
+- https://mindsers.blog/post/https-using-nginx-certbot-docker/
+
++ I used the root user to run because the permissions, after that to shared to container app, I change the owner to web.
 
 
 ## Git
